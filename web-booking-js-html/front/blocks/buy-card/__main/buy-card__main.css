@@ -1,0 +1,5 @@
+.buy-card__main {
+    display: flex;
+    flex-direction: column;
+    padding-right: 20px;
+}

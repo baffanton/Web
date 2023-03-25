@@ -1,0 +1,9 @@
+.create-order {
+    display: flex;
+    min-width: 500px;
+    width: 500px;
+    padding: 15px 30px;
+    flex-direction: column;
+    background-color: #2660AB;
+    border-radius: 10px;
+}

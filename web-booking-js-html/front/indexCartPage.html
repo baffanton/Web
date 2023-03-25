@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script
+      src="https://kit.fontawesome.com/394c9c5bf7.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="src/css/normalize.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <title>Корзина</title>
+</head>
+<body>
+    <header class="header">
+        <div class="location">
+            <i class="fa-solid fa-location-dot fa-lg location__icon"></i>
+            <p id="city-name" class="location__city-name"></p>
+        </div>
+        <a class="header__company" href="index.html">WebBooking</a>
+        <a class="basket" href="">
+            <i class="fa-solid fa-cart-shopping fa-xl basket__icon"></i>
+            <p id="basket-count" class="basket__count">0</p>
+        </a>
+    </header>
+    <main class="main">
+        <div class="cart">
+            <div class="cart__item cart__item_isBasket">
+                <p class="cart__title">Корзина</p>
+                <div class="buy-cards-container"></div>
+            </div>
+            <div class="cart__item cart__item_isOrder">
+                <p class="cart__title">Оформление заказа</p>
+                <div class="create-order">
+                    <div class="create-order__item">
+                        <p id="order-title" class="create-order__title">Товары:</p>
+                        <div class="price">
+                            <p id="price-digit-main" class="price__digit">4000</p>
+                            <i class="fa-solid fa-ruble-sign price__icon"></i>
+                        </div>
+                    </div>
+                    <div class="create-order__item">
+                        <p class="create-order__title">Скидка</p>
+                        <div class="price">
+                            <p class="price__digit">0</p>
+                            <i class="fa-solid fa-ruble-sign price__icon"></i>
+                        </div>
+                    </div>
+                    <div class="create-order__item create-order__item_isSum">
+                        <p class="create-order__title create-order__title_isSum">Итого к оплате:</p>
+                        <div class="price">
+                            <p id="price-digit-sum" class="price__digit price__digit_isSum">0</p>
+                            <i class="fa-solid fa-ruble-sign price__icon price__icon_isSum"></i>
+                        </div>
+                    </div>
+                    <div class="create-order__item">
+                        <button id="create-order-button" class="create-order__button">Оформить заказ</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script type="module" src="./indexCartPage.js"></script>
+</body>
+</html>

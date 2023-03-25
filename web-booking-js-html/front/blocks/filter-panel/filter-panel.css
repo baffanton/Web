@@ -1,0 +1,11 @@
+.filter-panel {
+    position: absolute;
+    left: 0;
+    top: 110%;
+    background: #26a9e0;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    width: 100%;
+    padding: 15px 0;
+    z-index: 1;
+}

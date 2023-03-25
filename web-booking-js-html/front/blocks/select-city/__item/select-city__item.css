@@ -1,0 +1,12 @@
+.select-city__item {
+    list-style-type: none;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    cursor: pointer;
+}
+
+.select-city__item:hover {
+    background-color: #2660ab;
+    color: white;
+}

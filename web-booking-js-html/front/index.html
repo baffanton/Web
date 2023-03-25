@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>WebBooking</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/394c9c5bf7.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="src/css/normalize.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+</head>
+<body>
+    <header class="header">
+        <div class="location">
+            <i class="fa-solid fa-location-dot fa-lg location__icon"></i>
+            <p id="city-name" class="location__city-name"></p>
+        </div>
+        <p class="header__company">WebBooking</p>
+        <a class="basket" href="indexCartPage.html">
+            <i class="fa-solid fa-cart-shopping fa-xl basket__icon"></i>
+            <p id="basket-count" class="basket__count">0</p>
+        </a>
+    </header>
+    <main class="main">
+        <div class="sort-filter-block">
+            <div id="sort-container" class="sort">
+                <i class="fa-solid fa-sort fa-lg sort__icon"></i>
+                <p id="sort-title" class="sort__title">От А до Я</p>
+            </div>
+            <div class="filter-container">
+                <div id="filter-genre" class="filter">
+                    <p id="filter-genre-text" class="filter__title">Жанр</p>
+                    <i id="genre-icon" class="fa-solid fa-chevron-down filter__icon"></i>
+                </div>
+                <div id="filter-age-content" class="filter">
+                    <p id="filter-age-content-text" class="filter__title">Возраст</p>
+                    <i id="age-content-icon" class="fa-solid fa-chevron-down filter__icon"></i>
+                </div>
+                <div id="filter-price" class="filter">
+                    <p id="filter-price-text" class="filter__title">Цена</p>
+                    <i id="price-icon" class="fa-solid fa-chevron-down filter__icon"></i>
+                </div>
+            </div>
+            <div class="filter-button">
+                <div id="apply-filters" class="filter-button__apply">Применить</div>
+                <i id="clear-filters" class="fa-solid fa-arrow-rotate-left filter-button__clear"></i>
+            </div>
+        </div>
+        <div id="showcase" class="showcase">
+        </div>
+    </main>
+
+    <script type="module" src="src/index.js"></script>
+</body>
+</html>

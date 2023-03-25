@@ -1,0 +1,5 @@
+.book-price__digit-container {
+    display: flex;
+    align-items: baseline;
+    width: 100%;
+}

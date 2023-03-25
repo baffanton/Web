@@ -1,0 +1,9 @@
+.sort-panel__item {
+    display: flex;
+    padding: 10px 15px 10px 15px;
+    align-items: center;
+}
+
+.sort-panel__item:hover {
+    background-color: #2660ab;
+}

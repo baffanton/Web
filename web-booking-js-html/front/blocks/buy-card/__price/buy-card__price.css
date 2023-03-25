@@ -1,0 +1,7 @@
+.buy-card__price {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    height: 100%;
+    color: white;
+}

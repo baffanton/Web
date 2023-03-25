@@ -1,0 +1,7 @@
+.buy-card__image {
+    height: 100%;
+    object-fit: contain;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    margin-right: 20px;
+}

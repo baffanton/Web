@@ -1,0 +1,4 @@
+.filter-panel__item_isPrice {
+    display: flex;
+    align-items: center;
+}

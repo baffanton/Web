@@ -1,0 +1,10 @@
+.change-panel {
+    display: flex;
+    width: 170px;
+    background: #2660AB;
+    border-radius: 10px;
+    height: 50px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 15px;
+}

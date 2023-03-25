@@ -1,0 +1,7 @@
+.book-card__container {
+    display: flex;
+    width: 410px;
+    height: 280px;
+    border-radius: 20px;
+    box-shadow: 7px 7px 5px grey;
+}

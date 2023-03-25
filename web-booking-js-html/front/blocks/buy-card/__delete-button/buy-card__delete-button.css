@@ -1,0 +1,8 @@
+.buy-card__delete-button {
+    margin-top: 5px;
+    cursor: pointer;
+    color: #2660AB;
+    display: flex;
+    justify-content: flex-end;
+    width: auto
+}

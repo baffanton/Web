@@ -1,0 +1,8 @@
+.filter-panel__input_isPrice {
+    margin-right: 0;
+    width: 100%;
+    height: 30px;
+    padding: 0 15px;
+    border-radius: 10px;
+    border: 2px solid #2660ab;
+}

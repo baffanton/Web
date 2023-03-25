@@ -1,0 +1,11 @@
+.sort-panel {
+    position: absolute;
+    left: 0;
+    top: 110%;
+    width: 100%;
+    background: #26a9e0;
+    z-index: 1;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding: 15px 0;
+}

@@ -1,0 +1,10 @@
+.filter-button__clear {
+    color: #cbe3e7;
+    cursor: pointer;
+    padding: 0 10px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-left: 3px solid #26a9e0;
+}

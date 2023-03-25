@@ -1,0 +1,7 @@
+.filter-panel__item {
+    padding: 10px 15px;
+}
+
+.filter-panel__item:hover {
+    background-color: #2660ab;
+}
