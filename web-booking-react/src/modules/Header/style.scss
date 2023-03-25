@@ -1,0 +1,43 @@
+.header {
+    padding: 0 260px;
+    height: 80px;
+    min-height: 80px;
+    background-color: #26a9e0;
+
+    &__company {
+        font-size: 50px;
+        color: white;
+    }
+}
+
+.location {
+    &__icon {
+        color: white;
+        margin-right: 10px;
+        font-size: 25px;
+    }
+
+    &__city-name {
+        color: white;
+        cursor: pointer;
+    }
+}
+
+.basket {
+    &__icon {
+        color: white;
+        cursor: pointer;
+        margin-right: 5px;
+        font-size: 25px;
+    }
+
+    &__count {
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        background-color: #cbe3e7;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}

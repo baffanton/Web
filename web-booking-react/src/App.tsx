@@ -1,8 +1,9 @@
+import { PageBuilder } from 'modules/PageBuilder';
 import './App.scss';
 
 function App() {
     return (
-        <div></div>
+        <PageBuilder></PageBuilder>
     );
 }
 
