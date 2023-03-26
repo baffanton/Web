@@ -2,8 +2,11 @@ import { defaultTo } from 'ramda';
 import { get, set } from 'lodash';
 
 import { createSelector } from 'reselect';
+import { cart } from './cart';
 
-export const state = {};
+export const state = {
+    cart,
+};
 
 /**
  * Combine selectors from an object config format.

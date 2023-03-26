@@ -1,8 +1,13 @@
 import { Header } from "./Header";
+import { getCookie } from "../helpers/cookie";
 
-const PageBuilder = () => {
+const PageBuilder: React.FC<any> = () => {
+    const city = getCookie('city');
+
     return (
-        <Header></Header>
+        <>
+            <Header city={city} productCount={0} />
+        </>
     )
 }
 
