@@ -14,45 +14,42 @@ constructor(
     private val cartService: CartService,
 ) {
 
-    @PutMapping("/{session}/{book_id}")
+    @PostMapping("/{book_id}")
     fun addCart(
-        @PathVariable("session") session: String,
         @PathVariable("book_id") id: Int,
     ): ResponseEntity<HttpStatus> {
-        cartService.addCart(session, id)
+        cartService.addCart(id)
 
         return ResponseEntity(
             HttpStatus.OK,
         )
     }
 
-    @DeleteMapping("/{session}/{book_id}")
+    @DeleteMapping("/{book_id}")
     fun deleteBook(
-        @PathVariable("session") session: String,
         @PathVariable("book_id") id: Int,
     ): ResponseEntity<HttpStatus> {
-        cartService.deleteBook(session, id)
+        cartService.deleteBook(id)
 
         return ResponseEntity(
             HttpStatus.OK,
         )
     }
 
-    @DeleteMapping("/all/{session}/{book_id}")
+    @DeleteMapping("/all/{book_id}")
     fun deleteAllBook(
-        @PathVariable("session") session: String,
         @PathVariable("book_id") id: Int,
     ): ResponseEntity<HttpStatus> {
-        cartService.deleteAllBook(session, id)
+        cartService.deleteAllBook(id)
 
         return ResponseEntity(
             HttpStatus.OK,
         )
     }
 
-    @GetMapping("/{session}")
-    fun getCart(@PathVariable("session") session: String): ResponseEntity<CartDto> {
-        val cart = cartService.getCart(session)
+    @GetMapping()
+    fun getCart(): ResponseEntity<CartDto> {
+        val cart = cartService.getCart()
 
         return ResponseEntity(
             cart,

@@ -31,8 +31,8 @@ constructor(
 ) : CartService {
 
     @Transactional
-    override fun addCart(session: String, id: Int) {
-        val cart = cartRepository.findByName(session) ?: cartRepository.save(CartEntity(name = session))
+    override fun addCart(id: Int) {
+        val cart = cartRepository.findByName("123") ?: cartRepository.save(CartEntity(name = "123"))
         val book = bookRepository.findByIdOrNull(id) ?: throw BookNotFoundException(id)
         val bookOnCart = bookOnCartRepository.findByBookAndCart(book, cart) ?: BookOnCartEntity(book, cart)
 
@@ -45,11 +45,11 @@ constructor(
     }
 
     @Transactional
-    override fun deleteBook(session: String, id: Int) {
-        val cart = cartRepository.findByName(session) ?: throw CartNotFoundException(session)
+    override fun deleteBook(id: Int) {
+        val cart = cartRepository.findByName("123") ?: throw CartNotFoundException("123")
         val book = bookRepository.findByIdOrNull(id) ?: throw BookNotFoundException(id)
         val bookOnCart = bookOnCartRepository.findByBookAndCart(book, cart)
-            ?: throw CartNotIncludeException(session, id)
+            ?: throw CartNotIncludeException("123", id)
 
         if (bookOnCart.count == 1) {
             bookOnCartRepository.delete(bookOnCart)
@@ -64,11 +64,11 @@ constructor(
     }
 
     @Transactional
-    override fun deleteAllBook(session: String, id: Int) {
-        val cart = cartRepository.findByName(session) ?: throw CartNotFoundException(session)
+    override fun deleteAllBook(id: Int) {
+        val cart = cartRepository.findByName("123") ?: throw CartNotFoundException("123")
         val book = bookRepository.findByIdOrNull(id) ?: throw BookNotFoundException(id)
         val bookOnCart = bookOnCartRepository.findByBookAndCart(book, cart)
-            ?: throw CartNotIncludeException(session, id)
+            ?: throw CartNotIncludeException("123", id)
 
         bookOnCartRepository.delete(bookOnCart)
 
@@ -78,22 +78,16 @@ constructor(
     }
 
     @Transactional
-    override fun getCart(session: String): CartDto {
-        val cartEntity = cartRepository.findByName(session) ?: throw CartNotFoundException(session)
+    override fun getCart(): CartDto {
+        val cartEntity = cartRepository.findByName("123") ?: throw CartNotFoundException("123")
         val books = bookOnCartRepository.findAllByCartOrderByBook(cartEntity)?.map { it -> it.toDto() }
 
         return cartEntity.toDto(books!!)
     }
 
     @Transactional
-    override fun createOrder(orderDto: OrderDto): String {
-        val cart = cartRepository.findByName(orderDto.session) ?: throw CartNotFoundException(orderDto.session)
-
-        if (cart.count > 0) {
-            orderRepository.save(orderDto.toEntity())
-
-            return sessionService.getSession()
-        }
+    override fun createOrder(orderDto: OrderDto) {
+        val cart = cartRepository.findByName("123") ?: throw CartNotFoundException("123")
 
         throw EmptyCartException()
     }
@@ -119,7 +113,6 @@ constructor(
 
     private fun OrderDto.toEntity(): OrderEntity {
         return OrderEntity(
-            session = this.session,
             city = this.city,
             date = this.date,
         )

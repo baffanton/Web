@@ -15,7 +15,7 @@
         <setting name="validation-enabled" value="true" />
         <setting name="provider-name" value="Hibernate" />
         <datasource-mapping>
-          <factory-entry name="Booking" value="af2220d0-c5d8-42b3-b22b-a075a00c9782" />
+          <factory-entry name="Booking" value="17e0387f-92bd-4337-b9f4-df654932e5f1" />
         </datasource-mapping>
         <naming-strategy-map />
       </configuration>
