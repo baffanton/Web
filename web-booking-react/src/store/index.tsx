@@ -1,24 +1,7 @@
-/* eslint-disable no-underscore-dangle */
-import { legacy_createStore as createStore, applyMiddleware, compose } from 'redux';
-import thunk from 'redux-thunk';
 import { rootReducer } from './reducers';
-
-// Add redux extension to global window
-declare let window: IWindow;
-
-const initialStore: any = {};
-
-const devTools = window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f: any) => f;
+import { legacy_createStore as createStore } from '@reduxjs/toolkit';
 
 export const store: any = createStore(
     rootReducer,
-    initialStore,
-    compose(
-        applyMiddleware(thunk),
-        devTools
-    )
+    (window as any).__REDUX_DEVTOOLS_EXTENSION__ && (window as any).__REDUX_DEVTOOLS_EXTENSION__()
 );
-
-interface IWindow extends Window {
-    __REDUX_DEVTOOLS_EXTENSION__: any;
-}

@@ -1,11 +1,14 @@
+/* eslint-disable import/no-anonymous-default-export */
 import { defaultTo } from 'ramda';
 import { get, set } from 'lodash';
 
 import { createSelector } from 'reselect';
 import { cart } from './cart';
+import { books } from './books';
 
 export const state = {
     cart,
+    books,
 };
 
 /**
@@ -19,7 +22,7 @@ export const state = {
  * @param postProcessingFunction
  * @returns {Function} Selector.
  */
-function combine(
+export function combine(
     selectorsObject: { [s: string]: any } | ArrayLike<any>,
     postProcessingFunction: Function | undefined = undefined
 ) {
@@ -72,4 +75,4 @@ function combine(
     );
 }
 
-export default { ...state, combine };
+export default { ...state };

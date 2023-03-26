@@ -1,5 +1,4 @@
 import { AlignItemsTypes, DirectionTypes, JustifyContentTypes } from "enums/flexTypes";
-import { MarginTypes, PaddingTypes } from "enums/indentTypes";
 
 export interface IField {
     className?: string,
@@ -7,4 +6,5 @@ export interface IField {
     jc?: JustifyContentTypes,
     ai?: AlignItemsTypes,
     noFlex?: boolean,
+    id?: string;
 }

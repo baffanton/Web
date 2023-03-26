@@ -6,11 +6,11 @@ import "./style.scss"
 
 interface IHeader {
     city: string | null;
-    productCount: number;
 }
 
-const Header: React.FC<IHeader> = (props: IHeader) => {
-    const { city, productCount } = props;
+const Header: React.FC<IHeader> = ({ city }) => {
+    
+    const productCount = 0;
 
     return (
         <Field ai={AlignItemsTypes.center} jc={JustifyContentTypes.spaceBetween} className='header'>
@@ -27,5 +27,5 @@ const Header: React.FC<IHeader> = (props: IHeader) => {
     )
 }
 
-export { Header };
+export { Header }
 

@@ -1,7 +1,7 @@
 enum DirectionTypes {
     row = 'row',
     column = 'column',
-    default = 'column',
+    default = 'row',
 }
 
 enum JustifyContentTypes {

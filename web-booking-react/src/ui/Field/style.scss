@@ -7,9 +7,11 @@
     align-items: stretch;
     width: 100%;
     height: auto;
-    &_column {
+
+    &.field_column {
         flex-direction: column;
     }
+    
     &.field_no-flex {
         width: auto;
     }
