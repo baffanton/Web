@@ -1,5 +1,6 @@
 package web.booking.controller
 
+import jakarta.servlet.http.HttpSession
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
@@ -13,6 +14,16 @@ class SettingsController
 constructor(
     private val sessionService: SettingsService,
 ) {
+
+    @GetMapping("/count")
+    fun getCartCount(session: HttpSession): ResponseEntity<Int> {
+        val count = sessionService.getCartCount(session)
+
+        return ResponseEntity(
+            count,
+            HttpStatus.OK,
+        )
+    }
 
     @GetMapping("/genre")
     fun getGenre(): ResponseEntity<List<String>> {
