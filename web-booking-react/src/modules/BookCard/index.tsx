@@ -17,6 +17,7 @@ const BookCard: React.FC<IBookCard> = ({ book }) => {
                     <img id={`${id}__image`} className='book-card__image' src={picture} alt='' />
                 </Field>
                 <BookInfo 
+                    id={id}
                     title={title}
                     author={author}
                     publisher={publisher}

@@ -31,5 +31,4 @@ const Header: React.FC<any> = () => {
     )
 }
 
-export { Header }
-
+export { Header };

@@ -1,20 +1,23 @@
 import { faSort } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { AlignItemsTypes, DirectionTypes } from 'enums/flexTypes';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Field } from 'ui/Field';
-import { sortConfig } from './config';
+import { defaultSortConfig, ISortConfig, sortConfig } from './config';
 import cx from 'classnames';
 import './style.scss';
+import { useDispatch } from 'react-redux';
+import { changeSort } from 'store/reducers/Books/actions';
 
 const SortPanel = () => {
+    const dispatch = useDispatch();
     const [sortPanelIsOpened, setSortPanelIsOpened] = useState(false);
-    const [currentSort, setCurrentSort] = useState<{id: string, title: string}>({id: 'titleAsc', title: 'От А до Я'});
+    const [currentSort, setCurrentSort] = useState<ISortConfig>(defaultSortConfig);
 
-    const handleChangeSort = (item: any) => {
-        //Запрос с фильтрацией
-        return setCurrentSort(item);
-    }
+    useEffect(() => {
+        // @ts-ignore
+        dispatch(changeSort({type: currentSort.type, direction: currentSort.direction}));
+    }, [currentSort])
 
     return (
         <Field 
@@ -28,7 +31,7 @@ const SortPanel = () => {
                 <Field direction={DirectionTypes.column} className='sort-panel'>
                     {sortConfig.map((item) => {
                         return (
-                            <Field className='sort-panel__item' key={item.id} onClick={() => handleChangeSort(item)}>
+                            <Field className='sort-panel__item' key={item.id} onClick={() => setCurrentSort(item)}>
                                 <FontAwesomeIcon className='sort-panel__icon' icon={item.icon} />
                                 <p className='sort-panel__title'>{item.title}</p>
                             </Field>

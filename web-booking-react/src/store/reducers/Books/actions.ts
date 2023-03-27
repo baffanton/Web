@@ -1,8 +1,8 @@
-import { RequestTypesEnum } from "enums/requestTypes";
-import { request } from "helpers/request";
-import { BOOKS_GET, BOOKS_GET_FILTERS, BOOKS_GET_SORT, IGetBooks, IGetFilters, IGetSort } from "./types";
+import { IFilters, ISort } from "./helpers";
+import { BOOKS_CHANGE_FILTERS, BOOKS_CHANGE_SORT, BOOKS_GET, IChangeFilters, IChangeSort, IGetBooks } from "./types";
 
-export const getBooks = () => (dispatch: (arg0: IGetBooks) => never) => {
+export const getBooks = (filters: IFilters, sort: ISort) => (dispatch: (arg0: IGetBooks) => never) => {
+    debugger;
     const config = [
         {
             "id":4,
@@ -84,32 +84,17 @@ export const getBooks = () => (dispatch: (arg0: IGetBooks) => never) => {
     //     })
 };
 
-export const getFiltersList = () => (dispatch: (arg0: IGetFilters) => void) => {
-    request(RequestTypesEnum.get, `/filters/`, null)
-        .then((res: any) => {
-            const { data } = res;
+export const changeFilters = (filters: IFilters) => (dispatch: (arg0: IChangeFilters) => void) => {
+    dispatch({
+        type: BOOKS_CHANGE_FILTERS,
+        filters
+    })
+}
 
-            return dispatch({
-                type: BOOKS_GET_FILTERS,
-                filters: data
-            })
-        })
-        .catch((errors: any) => {
-            console.log("Ошибка в запросе getFilters");
-        })
-};
-
-export const getSortList = () => (dispatch: (arg0: IGetSort) => void) => {
-    request(RequestTypesEnum.get, `/sort/`, null)
-        .then((res: any) => {
-            const { data } = res;
-
-            return dispatch({
-                type: BOOKS_GET_SORT,
-                sort: data
-            })
-        })
-        .catch((errors: any) => {
-            console.log("Ошибка в запросе getSort");
-        })
-};
+export const changeSort = (sort: ISort) => (dispatch: (arg0: IChangeSort) => void) => {
+    dispatch({
+        type: BOOKS_CHANGE_SORT,
+        sort
+    })
+}
+    

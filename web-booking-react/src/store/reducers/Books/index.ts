@@ -1,9 +1,10 @@
-import { BOOKS_GET, BOOKS_GET_FILTERS, BOOKS_GET_SORT, IBooksActionTypes, IBooksReducerModel } from "./types";
+import { defaultFilters, defaultSort } from "./helpers";
+import { BOOKS_CHANGE_FILTERS, BOOKS_CHANGE_SORT, BOOKS_GET, IBooksActionTypes, IBooksReducerModel } from "./types";
 
 const initialState: IBooksReducerModel = {
     books: [],
-    filters: [],
-    sort: [],
+    filters: defaultFilters,
+    sort: defaultSort,
 };
 
 export function booksReducer(state = initialState, action: IBooksActionTypes) {
@@ -13,16 +14,16 @@ export function booksReducer(state = initialState, action: IBooksActionTypes) {
                 ...state,
                 books: action.books,
             };
-        case BOOKS_GET_FILTERS:
+        case BOOKS_CHANGE_FILTERS:
             return {
                 ...state,
-                filters: action.filters,
-            };
-        case BOOKS_GET_SORT:
+                filters: action.filters
+            }
+        case BOOKS_CHANGE_SORT:
             return {
                 ...state,
-                sort: action.sort,
-            };
+                sort: action.sort
+            }
         default:
             return state;
     }

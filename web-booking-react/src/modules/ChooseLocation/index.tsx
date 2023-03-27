@@ -75,7 +75,6 @@ const ChooseLocation: React.FC<{
             </Field>
         </Modal>
     );
-    
 }
 
 export { ChooseLocation };

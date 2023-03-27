@@ -1,10 +1,13 @@
 import { faRubleSign } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { AlignItemsTypes, DirectionTypes } from 'enums/flexTypes';
+import { useDispatch } from 'react-redux';
+import { addProductToCart } from 'store/reducers/Cart/actions';
 import { Field } from 'ui/Field';
 import './style.scss';
 
 interface IBookInfo {
+    id: number;
     title: string;
     author: string;
     publisher: string;
@@ -13,7 +16,12 @@ interface IBookInfo {
     price: number;
 }
 
-const BookInfo: React.FC<IBookInfo> = ({ title, author, publisher, pages, year, price }) => {
+const BookInfo: React.FC<IBookInfo> = ({ id, title, author, publisher, pages, year, price }) => {
+    const dispatch = useDispatch();
+    const handlerBuyBook = () => {
+        // @ts-ignore
+        return dispatch(addProductToCart(id));
+    }
     return (
         <Field className='book-info' direction={DirectionTypes.column}>
             <p className='book-info__title'>{title}</p>
@@ -26,7 +34,7 @@ const BookInfo: React.FC<IBookInfo> = ({ title, author, publisher, pages, year, 
                     <p className="book-price__digit">{price}</p>
                     <FontAwesomeIcon className='book-price__icon' icon={faRubleSign} />
                 </Field>
-                <button className="book-price__button">Купить</button>
+                <button className="book-price__button" onClick={handlerBuyBook}>Купить</button>
             </Field>
         </Field>
     )

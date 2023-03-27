@@ -1,43 +1,31 @@
-import { IBook } from "./helpers";
+import { IBook, IFilters, ISort } from "./helpers";
 
 export const BOOKS_GET = 'BOOKS/GET';
-export const BOOKS_GET_FILTERS = 'BOOKS/GET_FILTERS';
-export const BOOKS_GET_SORT = 'BOOKS/GET_SORT';
+export const BOOKS_CHANGE_FILTERS = 'BOOKS/CHANGE_FILTERS';
+export const BOOKS_CHANGE_SORT = 'BOOKS/CHANGE_SORT';
 
 export interface IGetBooks {
     type: typeof BOOKS_GET;
     books: IBook[];
 }
 
-export interface IGetFilters {
-    type: typeof BOOKS_GET_FILTERS;
-    filters: {
-        id: string;
-        title: string;
-    }[];
+export interface IChangeFilters {
+    type: typeof BOOKS_CHANGE_FILTERS;
+    filters: IFilters;
 }
 
-export interface IGetSort {
-    type: typeof BOOKS_GET_SORT;
-    sort: {
-        id: string;
-        title: string;
-    }[];
+export interface IChangeSort {
+    type: typeof BOOKS_CHANGE_SORT;
+    sort: ISort;
 }
 
 export interface IBooksReducerModel {
     readonly books: IBook[];
-    readonly filters: {
-        id: string;
-        title: string;
-    }[];
-    readonly sort: {
-        id: string;
-        title: string;
-    }[];
+    readonly filters: IFilters;
+    readonly sort: ISort;
 }
 
 export type IBooksActionTypes =
     | IGetBooks
-    | IGetFilters
-    | IGetSort;
+    | IChangeFilters
+    | IChangeSort;
