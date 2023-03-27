@@ -1,5 +1,7 @@
 package web.booking.service.impl
 
+import jakarta.servlet.http.HttpServletRequest
+import jakarta.servlet.http.HttpSession
 import jakarta.transaction.Transactional
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
@@ -18,7 +20,6 @@ import web.booking.repository.BookRepository
 import web.booking.repository.CartRepository
 import web.booking.repository.OrderRepository
 import web.booking.service.CartService
-import web.booking.service.SettingsService
 
 @Service
 class CartServiceImpl
@@ -27,12 +28,12 @@ constructor(
     private val cartRepository: CartRepository,
     private val bookOnCartRepository: BookOnCartRepository,
     private val orderRepository: OrderRepository,
-    private val sessionService: SettingsService,
 ) : CartService {
 
     @Transactional
-    override fun addCart(id: Int) {
-        val cart = cartRepository.findByName("123") ?: cartRepository.save(CartEntity(name = "123"))
+    override fun addCart(session: HttpSession, id: Int): Int {
+        val cartName = session.id
+        val cart = cartRepository.findByName(cartName) ?: cartRepository.save(CartEntity(name = cartName))
         val book = bookRepository.findByIdOrNull(id) ?: throw BookNotFoundException(id)
         val bookOnCart = bookOnCartRepository.findByBookAndCart(book, cart) ?: BookOnCartEntity(book, cart)
 
@@ -42,14 +43,17 @@ constructor(
 
         bookOnCartRepository.save(bookOnCart)
         cartRepository.save(cart)
+
+        return cart.count
     }
 
     @Transactional
-    override fun deleteBook(id: Int) {
-        val cart = cartRepository.findByName("123") ?: throw CartNotFoundException("123")
+    override fun deleteBook(session: HttpSession, id: Int): Int {
+        val cartName = session.id
+        val cart = cartRepository.findByName(cartName) ?: throw CartNotFoundException(cartName)
         val book = bookRepository.findByIdOrNull(id) ?: throw BookNotFoundException(id)
         val bookOnCart = bookOnCartRepository.findByBookAndCart(book, cart)
-            ?: throw CartNotIncludeException("123", id)
+            ?: throw CartNotIncludeException(cartName, id)
 
         if (bookOnCart.count == 1) {
             bookOnCartRepository.delete(bookOnCart)
@@ -61,14 +65,17 @@ constructor(
         cart.count--
         cart.price -= book.price
         cartRepository.save(cart)
+
+        return bookOnCart.count
     }
 
     @Transactional
-    override fun deleteAllBook(id: Int) {
-        val cart = cartRepository.findByName("123") ?: throw CartNotFoundException("123")
+    override fun deleteAllBook(session: HttpSession, id: Int) {
+        val cartName = session.id
+        val cart = cartRepository.findByName(cartName) ?: throw CartNotFoundException(cartName)
         val book = bookRepository.findByIdOrNull(id) ?: throw BookNotFoundException(id)
         val bookOnCart = bookOnCartRepository.findByBookAndCart(book, cart)
-            ?: throw CartNotIncludeException("123", id)
+            ?: throw CartNotIncludeException(cartName, id)
 
         bookOnCartRepository.delete(bookOnCart)
 
@@ -78,16 +85,27 @@ constructor(
     }
 
     @Transactional
-    override fun getCart(): CartDto {
-        val cartEntity = cartRepository.findByName("123") ?: throw CartNotFoundException("123")
+    override fun getCart(session: HttpSession): CartDto {
+        val cartName = session.id
+        val cartEntity = cartRepository.findByName(cartName) ?: cartRepository.save(CartEntity(name = cartName))
         val books = bookOnCartRepository.findAllByCartOrderByBook(cartEntity)?.map { it -> it.toDto() }
 
         return cartEntity.toDto(books!!)
     }
 
     @Transactional
-    override fun createOrder(orderDto: OrderDto) {
-        val cart = cartRepository.findByName("123") ?: throw CartNotFoundException("123")
+    override fun createOrder(request: HttpServletRequest, orderDto: OrderDto) {
+        val cartName = request.session.id
+        val cart = cartRepository.findByName(cartName) ?: throw CartNotFoundException(cartName)
+
+        if (cart.count > 0) {
+            orderRepository.save(orderDto.toEntity(cartName))
+
+            request.session.invalidate()
+            request.session
+
+            return
+        }
 
         throw EmptyCartException()
     }
@@ -111,8 +129,9 @@ constructor(
         )
     }
 
-    private fun OrderDto.toEntity(): OrderEntity {
+    private fun OrderDto.toEntity(session: String): OrderEntity {
         return OrderEntity(
+            session = session,
             city = this.city,
             date = this.date,
         )

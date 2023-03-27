@@ -2,7 +2,7 @@ server:
   port: 8082
   servlet:
     session:
-      timeout: -1
+      timeout: 5m
 
 springdoc:
   swagger-ui:
