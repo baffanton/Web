@@ -3,9 +3,6 @@ import { request } from "helpers/request";
 import { BOOKS_GET, BOOKS_GET_FILTERS, BOOKS_GET_SORT, IGetBooks, IGetFilters, IGetSort } from "./types";
 
 export const getBooks = () => (dispatch: (arg0: IGetBooks) => never) => {
-
-    debugger;
-
     const config = [
         {
             "id":4,

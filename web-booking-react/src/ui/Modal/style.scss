@@ -1,0 +1,40 @@
+.modal {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, .2);
+    backdrop-filter: blur(10px);
+
+    &_isOpen {
+        height: 100%;
+        display: block;
+    }
+
+    &_isClosed {
+        height: 0;
+        display: none;
+    }
+
+    &__body {
+        max-width: 450px;
+        margin: auto;
+        background-color: white;
+        margin-top: 5%;
+        padding: 20px 0;
+        border-radius: 10px;
+    }
+
+    &__close {
+        position: absolute;
+        right: 0;
+        margin-right: 20px;
+        cursor: pointer;
+    }
+
+    &__title {
+        font-size: 30px;
+        font-weight: 600;
+        text-align: center;
+        width: 100%;
+    }
+}

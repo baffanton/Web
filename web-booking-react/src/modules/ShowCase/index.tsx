@@ -1,7 +1,7 @@
 import { DirectionTypes } from 'enums/flexTypes';
 import React from 'react';
 import { Field } from 'ui/Field';
-import { FiltersPanel } from './components/FiltersPanel';
+import { SortAndFiltersPanel } from './components/SortAndFiltersPanel';
 import { ShowCasePanel } from './components/ShowCasePanel';
 import './style.scss'
 
@@ -74,7 +74,7 @@ const ShowCase: React.FC<IShowCase> = () => {
 
     return (
         <Field className='main' direction={DirectionTypes.column}>
-            <FiltersPanel></FiltersPanel>
+            <SortAndFiltersPanel></SortAndFiltersPanel>
             <ShowCasePanel books={config}></ShowCasePanel>
         </Field>
             

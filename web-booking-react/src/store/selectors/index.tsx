@@ -5,10 +5,14 @@ import { get, set } from 'lodash';
 import { createSelector } from 'reselect';
 import { cart } from './cart';
 import { books } from './books';
+import { user } from './user';
+import { window as windowSelector } from './window';
 
 export const state = {
     cart,
     books,
+    user,
+    windowSelector
 };
 
 /**

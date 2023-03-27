@@ -1,10 +1,11 @@
-import { faArrowRotateLeft, faChevronDown, faSort } from '@fortawesome/free-solid-svg-icons';
+import { faArrowRotateLeft, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { AlignItemsTypes, JustifyContentTypes } from 'enums/flexTypes';
 import { Field } from 'ui/Field';
+import { SortPanel } from './SortPanel';
 import './style.scss';
 
-const FiltersPanel: React.FC<any> = () => {
+const SortAndFiltersPanel: React.FC<any> = () => {
     const filters = [
         {
             id: 'genre',
@@ -58,31 +59,9 @@ const FiltersPanel: React.FC<any> = () => {
         }
     ]
 
-    // const sort = [
-    //     {
-    //         id: 'titleAsc',
-    //         title: 'От А до Я'
-    //     },
-    //     {
-    //         id: 'titleDesc',
-    //         title: 'От Я до А'
-    //     },
-    //     {
-    //         id: 'priceAsc',
-    //         title: 'По возрастанию цены'
-    //     },
-    //     {
-    //         id: 'priceDesc',
-    //         title: 'По уменьшению цены'
-    //     }
-    // ]
-
     return (
         <Field className='sort-filter-block' ai={AlignItemsTypes.center}>
-            <Field className='sort' ai={AlignItemsTypes.center}>
-                <FontAwesomeIcon icon={faSort} className='sort__icon' />
-                <p className="sort__title">От А до Я</p>
-            </Field>
+            <SortPanel />
             <Field className='filter-container' ai={AlignItemsTypes.center}>
                 {filters.map(({id, title}) => {
                     return (
@@ -107,4 +86,4 @@ const FiltersPanel: React.FC<any> = () => {
     )
 }
 
-export { FiltersPanel };
+export { SortAndFiltersPanel };

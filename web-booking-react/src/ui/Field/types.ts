@@ -7,4 +7,5 @@ export interface IField {
     ai?: AlignItemsTypes,
     noFlex?: boolean,
     id?: string;
+    onClick?: any;
 }

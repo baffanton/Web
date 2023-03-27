@@ -12,6 +12,7 @@ const Field: FC<PropsWithChildren<IField>> = ({
     jc = JustifyContentTypes.default,
     direction = DirectionTypes.default,
     noFlex = false,
+    onClick,
     ...params
 }) => {
     const ref = createRef<HTMLDivElement>();
@@ -26,12 +27,12 @@ const Field: FC<PropsWithChildren<IField>> = ({
 
     if (id) {
         return (
-            <div id={id} className={classNames} {...params} ref={ref}>{ children }</div>
+            <div id={id} onClick={onClick} className={classNames} {...params} ref={ref}>{ children }</div>
         )
     }
 
     return (
-        <div className={classNames} {...params} ref={ref}>{ children }</div>
+        <div onClick={onClick} className={classNames} {...params} ref={ref}>{ children }</div>
     )
 
 }
