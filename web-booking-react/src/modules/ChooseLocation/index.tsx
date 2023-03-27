@@ -15,14 +15,14 @@ const ChooseLocation: React.FC<{
 }> = ({ cityIsChoosen }) => {
     const [modalIsOpened, setModalIsOpened] = useState<boolean>(true);
     const cities = useSelector((state: any) => state.user.cities);
-    const [value, setValue] = useState<string | null>(null)
+    const [value, setValue] = useState<any>(null)
     const dispatch = useDispatch();
 
-    const handleChange = (selected: any) => {
+    const handlerChange = (selected: any) => {
         setValue(selected);
     }
 
-    const handleClick = (title: string) => {
+    const handlerClick = (title: string) => {
         setValue(title);
         // @ts-ignore
         dispatch(changeLocation(title));
@@ -42,6 +42,19 @@ const ChooseLocation: React.FC<{
         dispatch(openModal(false));
     }
 
+    const handlerAcceptBtn = () => {
+        if (!value) {
+            return null;
+        }
+        const { label } = value;
+        // @ts-ignore
+        dispatch(changeLocation(label));
+        setCookie('city', label);
+        setModalIsOpened(false);
+        // @ts-ignore
+        return dispatch(openModal(false));
+    }
+
     return (
         <Modal 
             isOpened={modalIsOpened} 
@@ -53,7 +66,7 @@ const ChooseLocation: React.FC<{
                 <ReactSelect 
                     options={cities}
                     closeMenuOnSelect
-                    onChange={handleChange}
+                    onChange={handlerChange}
                     value={value}
                     isSearchable
                     className='location-select__container'
@@ -63,14 +76,14 @@ const ChooseLocation: React.FC<{
                 <Field direction={DirectionTypes.column} className='location__million'>
                     {configCities.map(({id, title}) => {
                         return (
-                            <Field key={id} onClick={() => handleClick(title)}>
+                            <Field key={id} onClick={() => handlerClick(title)}>
                                 <p key={id} id={id} className='location__city'>{title}</p>
                             </Field>
                         )
                     })}
                 </Field>
                 <Field>
-                    <button disabled={!value} className='location__accept-button'>Применить</button>
+                    <button disabled={!value} className='location__accept-button' onClick={handlerAcceptBtn}>Применить</button>
                 </Field>
             </Field>
         </Modal>

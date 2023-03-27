@@ -1,8 +1,7 @@
 import { IFilters, ISort } from "./helpers";
 import { BOOKS_CHANGE_FILTERS, BOOKS_CHANGE_SORT, BOOKS_GET, IChangeFilters, IChangeSort, IGetBooks } from "./types";
 
-export const getBooks = (filters: IFilters, sort: ISort) => (dispatch: (arg0: IGetBooks) => never) => {
-    debugger;
+export const getBooks = (filters?: IFilters, sort?: ISort) => (dispatch: (arg0: IGetBooks) => never) => {
     const config = [
         {
             "id":4,
