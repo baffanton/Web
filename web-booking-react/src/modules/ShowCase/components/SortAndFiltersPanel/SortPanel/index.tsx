@@ -7,7 +7,7 @@ import { defaultSortConfig, ISortConfig, sortConfig } from './config';
 import cx from 'classnames';
 import './style.scss';
 import { useDispatch } from 'react-redux';
-import { changeSort } from 'store/reducers/Books/actions';
+import { changeSort, getBooks } from 'store/reducers/Books/actions';
 
 const SortPanel = () => {
     const dispatch = useDispatch();

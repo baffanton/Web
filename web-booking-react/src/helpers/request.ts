@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { RequestTypesEnum } from 'enums/requestTypes';
 
+axios.defaults.withCredentials = true
+
 const METHODS = {
     get: axios.get,
     post: axios.post,
@@ -14,7 +16,7 @@ export const requestOptions = {
         'Content-Type': 'application/json',
     },
     mode: 'cors',
-    cache: 'no-cache',
+    // cache: 'no-cache',
     credentials: 'same-origin',
 };
 

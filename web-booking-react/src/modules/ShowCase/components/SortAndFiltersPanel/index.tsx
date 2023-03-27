@@ -1,6 +1,6 @@
 import { AlignItemsTypes } from 'enums/flexTypes';
 import { Field } from 'ui/Field';
-import FilterPanel from './FilterPanel';
+import { FilterPanel } from './FilterPanel';
 import { SortPanel } from './SortPanel';
 import './style.scss';
 

@@ -1,4 +1,6 @@
-import { IFilters, ISort } from "./helpers";
+import { RequestTypesEnum } from "enums/requestTypes";
+import { request } from "helpers/request";
+import { defaultFilters, defaultSort, IFilters, ISort } from "./helpers";
 import { BOOKS_CHANGE_FILTERS, BOOKS_CHANGE_SORT, BOOKS_GET, IChangeFilters, IChangeSort, IGetBooks } from "./types";
 
 export const getBooks = (filters?: IFilters, sort?: ISort) => (dispatch: (arg0: IGetBooks) => never) => {
@@ -65,22 +67,23 @@ export const getBooks = (filters?: IFilters, sort?: ISort) => (dispatch: (arg0: 
         }
     ];
 
-    dispatch({
-        type: BOOKS_GET,
-        books: config
-    });
-    // request(RequestTypesEnum.get, `/books/`, null)
-    //     .then((res: any) => {
-    //         const { data } = res;
+    const schema = {
+        filters: filters || null,
+        type: sort ? sort.type : defaultSort.type,
+        direction: sort ? sort.direction : defaultSort.direction
+    }
+    request(RequestTypesEnum.post, `http://127.0.0.1:8082/books`, schema)
+        .then((res: any) => {
+            const { data } = res;
 
-    //         return dispatch({
-    //             type: BOOKS_GET,
-    //             books: data
-    //         })
-    //     })
-    //     .catch((errors: any) => {
-    //         console.log("Ошибка в запросе getBooks");
-    //     })
+            return dispatch({
+                type: BOOKS_GET,
+                books: data
+            })
+        })
+        .catch((errors: any) => {
+            console.log("Ошибка в запросе getBooks");
+        })
 };
 
 export const changeFilters = (filters: IFilters) => (dispatch: (arg0: IChangeFilters) => void) => {

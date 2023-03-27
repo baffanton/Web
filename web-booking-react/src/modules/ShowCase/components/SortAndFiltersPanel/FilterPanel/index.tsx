@@ -2,7 +2,7 @@ import { faArrowRotateLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { AlignItemsTypes } from 'enums/flexTypes';
 import { useEffect, useState } from 'react';
-import { connect, useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { changeFilters, getBooks } from 'store/reducers/Books/actions';
 import { defaultFilters, defaultSort, IFilters } from 'store/reducers/Books/helpers';
 import { Field } from 'ui/Field';
@@ -10,10 +10,13 @@ import { Filter } from './components/Filter';
 import { filtersConfig } from './config';
 import './style.scss';
 
-const FilterPanel: React.FC<any> = (filters, sort) => {
+const FilterPanel: React.FC<any> = () => {
     const dispatch = useDispatch();
     const [currentPanel, setCurrentPanel] = useState<any>(null);
     const [currentFilters, setCurrentFilters] = useState<IFilters>(defaultFilters);
+
+    const filters = useSelector((state: any) => state.books.filters);
+    const sort = useSelector((state: any) => state.books.sort);
 
     useEffect(() => {
         // @ts-ignore
@@ -21,6 +24,7 @@ const FilterPanel: React.FC<any> = (filters, sort) => {
     }, [currentFilters]);
 
     const handlerClick = () => {
+        debugger;
         // @ts-ignore
         return dispatch(getBooks(filters, sort));
     }
@@ -58,11 +62,4 @@ const FilterPanel: React.FC<any> = (filters, sort) => {
     )
 }
 
-const mapStateToProps = (state) => {
-    return {
-        filters: state.books.filters,
-        sort: state.books.sort,
-    }
-}
-
-export default connect(mapStateToProps)(FilterPanel);
+export { FilterPanel };
