@@ -1,5 +1,4 @@
-#Файлы IDEA
-/.idea/
+.idea
+Backend/Booking/target/
 
-#Файлы сборки
-/Backend/Booking/target/
+*.iml

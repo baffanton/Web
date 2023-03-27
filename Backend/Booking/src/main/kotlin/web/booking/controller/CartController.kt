@@ -1,5 +1,7 @@
 package web.booking.controller
 
+import jakarta.servlet.http.HttpServletRequest
+import jakarta.servlet.http.HttpSession
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -17,10 +19,12 @@ constructor(
     @PostMapping("/{book_id}")
     fun addCart(
         @PathVariable("book_id") id: Int,
-    ): ResponseEntity<HttpStatus> {
-        cartService.addCart(id)
+        session: HttpSession,
+    ): ResponseEntity<Int> {
+        val count = cartService.addCart(session, id)
 
         return ResponseEntity(
+            count,
             HttpStatus.OK,
         )
     }
@@ -28,10 +32,12 @@ constructor(
     @DeleteMapping("/{book_id}")
     fun deleteBook(
         @PathVariable("book_id") id: Int,
-    ): ResponseEntity<HttpStatus> {
-        cartService.deleteBook(id)
+        session: HttpSession,
+    ): ResponseEntity<Int> {
+        val count = cartService.deleteBook(session, id)
 
         return ResponseEntity(
+            count,
             HttpStatus.OK,
         )
     }
@@ -39,8 +45,9 @@ constructor(
     @DeleteMapping("/all/{book_id}")
     fun deleteAllBook(
         @PathVariable("book_id") id: Int,
+        session: HttpSession,
     ): ResponseEntity<HttpStatus> {
-        cartService.deleteAllBook(id)
+        cartService.deleteAllBook(session, id)
 
         return ResponseEntity(
             HttpStatus.OK,
@@ -48,8 +55,8 @@ constructor(
     }
 
     @GetMapping()
-    fun getCart(): ResponseEntity<CartDto> {
-        val cart = cartService.getCart()
+    fun getCart(session: HttpSession): ResponseEntity<CartDto> {
+        val cart = cartService.getCart(session)
 
         return ResponseEntity(
             cart,
@@ -58,11 +65,13 @@ constructor(
     }
 
     @PostMapping()
-    fun createOrder(@RequestBody orderDto: OrderDto): ResponseEntity<String> {
-        val session = cartService.createOrder(orderDto)
+    fun createOrder(
+        @RequestBody orderDto: OrderDto,
+        request: HttpServletRequest,
+    ): ResponseEntity<HttpStatus> {
+        cartService.createOrder(request, orderDto)
 
         return ResponseEntity(
-            "session",
             HttpStatus.CREATED,
         )
     }

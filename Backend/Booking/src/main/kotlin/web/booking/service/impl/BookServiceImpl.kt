@@ -270,7 +270,7 @@ constructor(
         )
     }
 
-    private fun Int.isEmpty(): Boolean{
+    private fun Int.isEmpty(): Boolean {
         return this == -1
     }
 
