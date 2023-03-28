@@ -17,7 +17,6 @@ const ShowCase: React.FC<IShowCase> = () => {
             <SortAndFiltersPanel></SortAndFiltersPanel>
             <ShowCasePanel books={books}></ShowCasePanel>
         </Field>
-            
     );
 }
 

@@ -1,0 +1,88 @@
+.cart-card {
+    height: 280px;
+    background-color: #26A9E0;
+    border-radius: 10px;
+    margin-bottom: 20px;
+
+    &__image-container {
+        width: 60%;
+        height: 100%;
+    }
+
+    &__image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+    }
+
+    &__info-container {
+        padding: 15px;
+    }
+
+    &__title {
+        color: white;
+        font-size: 30px;
+    }
+
+    &__author {
+        color: white;
+    }
+
+    &__price-container {
+        height: 100%;
+    }
+
+    &__change-container {
+        padding: 15px;
+    }
+
+    &__change {
+        padding: 0 10px;
+        background-color: #2660AB;
+        border-radius: 10px;
+        width: 150px;
+        height: 50px;
+    }
+
+    &__minus-book {
+        color: white;
+        cursor: pointer;
+        font-size: 25px;
+    }
+
+    &__count-book {
+        color: white;
+        font-size: 30px;
+        cursor: default;
+    }
+
+    &__plus-book {
+        color: white;
+        font-size: 25px;
+        cursor: pointer;
+    }
+
+    &__delete-book {
+        margin-top: 5px;
+        color: #2660AB;
+        cursor: pointer;
+    }
+
+    &__total {
+        height: 100%;
+        padding: 15px;
+    }
+
+    &__digit {
+        color: white;
+        font-size: 25px;
+    }
+
+    &__sum {
+        color: white;
+        font-size: 25px;
+        margin-left: 10px;
+    }
+}

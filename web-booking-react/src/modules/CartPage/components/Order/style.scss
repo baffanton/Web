@@ -1,0 +1,48 @@
+.order {
+    width: auto;
+    padding-left: 50px;
+
+    &__title {
+        margin-bottom: 15px;
+        font-size: 40px;
+        color: #2660AB;
+    }
+
+    &__container {
+        width: 500px;
+        background-color: #2660AB;
+        padding: 30px 15px 15px 15px;
+        border-radius: 10px;
+    }
+
+    &__product-title {
+        color: white;
+
+        &_isTotal {
+            font-size: 30px;
+        }
+    }
+
+    &__product-price {
+        color: white;
+
+        &_isTotal {
+            font-size: 30px;
+        }
+    }
+
+    &__total {
+        padding-top: 30px;
+        padding-bottom: 15px;
+    }
+
+    &__create-order {
+        width: 100%;
+        background-color: white;
+        border-radius: 10px;
+        border: none;
+        height: 70px;
+        font-size: 25px;
+        cursor: pointer;
+    }
+}

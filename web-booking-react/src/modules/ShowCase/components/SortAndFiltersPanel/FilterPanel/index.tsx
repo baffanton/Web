@@ -24,7 +24,6 @@ const FilterPanel: React.FC<any> = () => {
     }, [currentFilters]);
 
     const handlerClick = () => {
-        debugger;
         // @ts-ignore
         return dispatch(getBooks(filters, sort));
     }

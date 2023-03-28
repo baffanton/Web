@@ -27,7 +27,6 @@ const Filter:React.FC<{
     }, [currentPanel]);
 
     const handlerClick = (e: any) => {
-        debugger;
         if (filterPanelIsOpened) {
             if (e.target.id === id || e.target.parentElement.id === id) {
                 setCurrentPanel(null);

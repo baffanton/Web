@@ -1,7 +1,9 @@
 import { createStateSelector } from "../helpers";
 
 const cart = {
-    productCount: createStateSelector('cart.productCount'),
+    count: createStateSelector('cart.count'),
+    price: createStateSelector('cart.price'),
+    books: createStateSelector('cart.books')
 };
 
 export { cart };

@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { changeLocation } from "store/reducers/User/actions";
 import { openModal } from "store/reducers/Window/actions";
 import { useEffect } from "react";
+import { Route, Routes } from "react-router";
+import { CartPage } from "./CartPage";
 
 const PageBuilder: React.FC<any> = () => {
     const dispatch = useDispatch();
@@ -29,7 +31,10 @@ const PageBuilder: React.FC<any> = () => {
     return (
         <>
             <Header city={cityFromCookie} />
-            <ShowCase />
+            <Routes>
+                <Route path="/" element={<ShowCase />} />
+                <Route path="/cart" element={<CartPage />} />
+            </Routes>
             {modalIsOpen && (
                 <ChooseLocation cityIsChoosen={!!cityFromCookie}  />
             )}
