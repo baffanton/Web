@@ -3,17 +3,15 @@ import { RequestTypesEnum } from "enums/requestTypes";
 import { request } from "helpers/request";
 import { 
     CART_ADD_PRODUCT, 
-    CART_CREATE_ORDER, 
     CART_GET_CART, 
     CART_GET_COUNT, 
     IAddProductToCart, 
-    ICartCreateOrder, 
     ICartGetCount, 
     IGetCart 
 } from "./types";
 
 export const addProductToCart = (id: number) => (dispatch: (arg0: IAddProductToCart) => void) => {
-    request(RequestTypesEnum.post, `http://127.0.0.1:8082/cart/${id}`, null)
+    request(RequestTypesEnum.post, `/cart/${id}`, null)
         .then((res: any) => {
             const { data } = res;
 
@@ -28,7 +26,7 @@ export const addProductToCart = (id: number) => (dispatch: (arg0: IAddProductToC
 };
 
 export const getCountProduct = () => (dispatch: (arg0: ICartGetCount) => void) => {
-    request(RequestTypesEnum.get, 'http://127.0.0.1:8082/settings/count', null)
+    request(RequestTypesEnum.get, '/settings/count', null)
         .then((res: any) => {
             const { data } = res;
 
@@ -42,22 +40,25 @@ export const getCountProduct = () => (dispatch: (arg0: ICartGetCount) => void) =
         })
 }
 
-export const createOrder = (userCity: string, currentDate: Date) => (dispatch: (arg0: ICartCreateOrder) => void) => {
+export const createOrder = (userCity: string, currentDate: Date) => (dispatch: (arg0: IGetCart) => void) => {
     const order = {
         city: userCity,
         date: currentDate
     };
 
-    request(RequestTypesEnum.post, 'http://127.0.0.1:8082/settings/count', order)
+    request(RequestTypesEnum.post, '/cart', order)
         .then(res => {
-            const { count, price, books } = res.data;
+            request(RequestTypesEnum.get, '/cart', null)
+                .then(res => {
+                    const { count, price, books } = res.data;
 
-            return dispatch({
-                type: CART_CREATE_ORDER,
-                count,
-                price,
-                books
-            })
+                    dispatch({
+                        type: CART_GET_CART,
+                        count,
+                        price,
+                        books,
+                    })
+                })
         })
         .catch((errors) => {
             console.log('Ошибка в запросе createOrder');
@@ -66,21 +67,23 @@ export const createOrder = (userCity: string, currentDate: Date) => (dispatch: (
 
 export const changeCart = (type: ChangeCartEnum, bookId: number) => (dispatch: (arg0: IGetCart) => void) => {
     let requestType: RequestTypesEnum = RequestTypesEnum.default;
+    let url: string = `/cart/${bookId}`;
     switch (type) {
         case ChangeCartEnum.minus:
             requestType = RequestTypesEnum.delete;
             break;
         case ChangeCartEnum.plus:
-            requestType = RequestTypesEnum.put;
+            requestType = RequestTypesEnum.post;
             break;
         case ChangeCartEnum.delete:
-            requestType = RequestTypesEnum.get;
+            url = `/cart/all/${bookId}`;
+            requestType = RequestTypesEnum.delete;
             break;
     }
 
-    request(requestType, 'http://127.0.0.1:8082/settings/count', null)
+    request(requestType, url, null)
         .then(res => {
-            request(RequestTypesEnum.get, 'http://127.0.0.1:8082/settings/count', null)
+            request(RequestTypesEnum.get, '/cart', null)
                 .then(res => {
                     const { count, price, books } = res.data;
 
@@ -94,5 +97,23 @@ export const changeCart = (type: ChangeCartEnum, bookId: number) => (dispatch: (
         })
         .catch((errors) => {
             console.log('Ошибка в запросе minusBook');
+        })
+}
+
+export const getCart = () => (dispatch: (arg0: IGetCart) => void) => {
+    request(RequestTypesEnum.get, '/cart', null)
+        .then(res => {
+            if (!res.data) {
+                return null;
+            }
+
+            const { count, price, books } = res.data;
+
+            return dispatch({
+                type: CART_GET_CART,
+                count,
+                price,
+                books
+            })
         })
 }

@@ -16,25 +16,6 @@ export interface ICartGetCount {
     count: number;
 }
 
-export interface ICartCreateOrder {
-    type: typeof CART_CREATE_ORDER;
-    count: number;
-    price: number;
-    books: number;
-}
-
-export interface ICartMinusBook {
-    type: typeof CART_MINUS_BOOK;
-}
-
-export interface ICartPlusBook {
-    type: typeof CART_PLUS_BOOK;
-}
-
-export interface ICartDeleteBook {
-    type: typeof CART_DELETE_BOOK;
-}
-
 export interface IGetCart {
     type: typeof CART_GET_CART;
     count: number;
@@ -51,8 +32,4 @@ export interface ICartReducerModel {
 export type ICartActionTypes =
     | IAddProductToCart
     | ICartGetCount
-    | ICartCreateOrder
-    | ICartMinusBook
-    | ICartPlusBook
-    | ICartDeleteBook
     | IGetCart;

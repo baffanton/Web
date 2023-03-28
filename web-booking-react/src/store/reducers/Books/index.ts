@@ -1,9 +1,9 @@
-import { defaultFilters, defaultSort } from "./helpers";
+import { defaultSort } from "./helpers";
 import { BOOKS_CHANGE_FILTERS, BOOKS_CHANGE_SORT, BOOKS_GET, IBooksActionTypes, IBooksReducerModel } from "./types";
 
 const initialState: IBooksReducerModel = {
     books: [],
-    filters: defaultFilters,
+    filters: null,
     sort: defaultSort,
 };
 

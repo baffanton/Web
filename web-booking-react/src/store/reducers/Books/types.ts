@@ -21,7 +21,7 @@ export interface IChangeSort {
 
 export interface IBooksReducerModel {
     readonly books: IBook[];
-    readonly filters: IFilters;
+    readonly filters: IFilters | null;
     readonly sort: ISort;
 }
 

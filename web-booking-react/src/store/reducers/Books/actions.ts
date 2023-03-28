@@ -77,7 +77,7 @@ export const getBooks = (filters?: IFilters, sort?: ISort) => (dispatch: (arg0: 
         type: sort ? sort.type : defaultSort.type,
         direction: sort ? sort.direction : defaultSort.direction
     }
-    request(RequestTypesEnum.post, `http://127.0.0.1:8082/books`, schema)
+    request(RequestTypesEnum.post, `/books`, schema)
         .then((res: any) => {
             const { data } = res;
 

@@ -15,7 +15,7 @@ const Filter:React.FC<{
     },
     currentPanel: any,
     setCurrentPanel: any,
-    filters: IFilters,
+    filters: IFilters | null,
     setFilters: any
 }> = ({item, currentPanel, setCurrentPanel, filters, setFilters}) => {
     const [filterPanelIsOpened, setFilterPanelIsOpened] = useState(false);

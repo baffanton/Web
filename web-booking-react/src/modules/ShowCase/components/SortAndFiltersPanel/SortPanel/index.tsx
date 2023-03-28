@@ -6,17 +6,20 @@ import { Field } from 'ui/Field';
 import { defaultSortConfig, ISortConfig, sortConfig } from './config';
 import cx from 'classnames';
 import './style.scss';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { changeSort, getBooks } from 'store/reducers/Books/actions';
 
 const SortPanel = () => {
     const dispatch = useDispatch();
     const [sortPanelIsOpened, setSortPanelIsOpened] = useState(false);
     const [currentSort, setCurrentSort] = useState<ISortConfig>(defaultSortConfig);
+    const filters = useSelector((state: any) => state.books.filters);
 
     useEffect(() => {
         // @ts-ignore
         dispatch(changeSort({type: currentSort.type, direction: currentSort.direction}));
+        // @ts-ignore
+        dispatch(getBooks(filters, {type: currentSort.type, direction: currentSort.direction}));
     }, [currentSort])
 
     return (

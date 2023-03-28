@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { AlignItemsTypes } from 'enums/flexTypes';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeFilters, getBooks } from 'store/reducers/Books/actions';
+import { changeFilters, changeSort, getBooks } from 'store/reducers/Books/actions';
 import { defaultFilters, defaultSort, IFilters } from 'store/reducers/Books/helpers';
 import { Field } from 'ui/Field';
 import { Filter } from './components/Filter';
@@ -13,7 +13,7 @@ import './style.scss';
 const FilterPanel: React.FC<any> = () => {
     const dispatch = useDispatch();
     const [currentPanel, setCurrentPanel] = useState<any>(null);
-    const [currentFilters, setCurrentFilters] = useState<IFilters>(defaultFilters);
+    const [currentFilters, setCurrentFilters] = useState<IFilters | null>(null);
 
     const filters = useSelector((state: any) => state.books.filters);
     const sort = useSelector((state: any) => state.books.sort);
@@ -30,11 +30,11 @@ const FilterPanel: React.FC<any> = () => {
 
     const handlerClear = () => {
         // @ts-ignore
-        dispatch(changeFilters(defaultFilters));
+        dispatch(changeFilters(null));
         // @ts-ignore
         dispatch(changeSort(defaultSort));
         // @ts-ignore
-        return dispatch(getBooks(defaultFilters, defaultSort));
+        return dispatch(getBooks());
     }
 
     return (
