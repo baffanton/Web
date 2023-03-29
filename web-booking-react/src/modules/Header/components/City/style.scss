@@ -1,0 +1,12 @@
+.city {
+    &__icon {
+        color: white;
+        margin-right: 10px;
+        font-size: 25px;
+    }
+
+    &__name {
+        color: white;
+        cursor: pointer;
+    }
+}

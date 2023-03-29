@@ -10,35 +10,3 @@
         text-decoration: none;
     }
 }
-
-.location {
-    &__icon {
-        color: white;
-        margin-right: 10px;
-        font-size: 25px;
-    }
-
-    &__city-name {
-        color: white;
-        cursor: pointer;
-    }
-}
-
-.basket {
-    &__icon {
-        color: white;
-        cursor: pointer;
-        margin-right: 5px;
-        font-size: 25px;
-    }
-
-    &__count {
-        border-radius: 50%;
-        width: 30px;
-        height: 30px;
-        background-color: #cbe3e7;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-}

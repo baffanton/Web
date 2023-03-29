@@ -13,7 +13,6 @@ export function getCookie(name: string) {
 export function setCookie(name: string, value: string, options?: any) {
     options = {
         path: "/",
-        // при необходимости добавьте другие значения по умолчанию
         ...options
     };
 

@@ -1,5 +1,7 @@
-.sort-filter-block {
-    background-color: #2660ab;
-    height: 40px;
-    border-radius: 10px;
+.sort-filter {
+    &__container {
+        background-color: #2660ab;
+        height: 40px;
+        border-radius: 10px;
+    }
 }

@@ -1,10 +1,10 @@
-import { faCartShopping, faLocationDot } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { AlignItemsTypes, JustifyContentTypes } from "enums/flexTypes";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { openModal } from "store/reducers/Window/actions";
+import { openModal } from "store/reducers/Modal/actions";
 import { Field } from "ui/Field";
+import { Basket } from "./components/Basket";
+import { City } from "./components/City";
 import "./style.scss"
 
 const Header: React.FC<any> = () => {
@@ -14,22 +14,14 @@ const Header: React.FC<any> = () => {
 
     const clickHandler = () => {
         // @ts-ignore
-        dispatch(openModal(true));
+        dispatch(openModal());
     }
 
     return (
         <Field ai={AlignItemsTypes.center} jc={JustifyContentTypes.spaceBetween} className='header'>
-            <Field ai={AlignItemsTypes.center} className='location'>
-                <FontAwesomeIcon className='location__icon' icon={faLocationDot} />
-                <p id='city-name' className='location__city-name' onClick={clickHandler}>{ city }</p>
-            </Field>
+            <City city={city} onClick={clickHandler} />
             <Link to="/" className='header__company'>WebBooking</Link>
-            <Field jc={JustifyContentTypes.flexEnd} ai={AlignItemsTypes.center} className='basket'>
-                <Link to="/cart">
-                    <FontAwesomeIcon className='basket__icon' icon={faCartShopping} />
-                </Link>
-                <p id='basket-count' className='basket__count'>{ count }</p>
-            </Field>
+            <Basket count={count}/>
         </Field>
     )
 }

@@ -3,19 +3,16 @@ import React from 'react';
 import { Field } from 'ui/Field';
 import { SortAndFiltersPanel } from './components/SortAndFiltersPanel';
 import { ShowCasePanel } from './components/ShowCasePanel';
-import './style.scss'
 import { useSelector } from 'react-redux';
+import './style.scss'
 
-interface IShowCase {
-};
-
-const ShowCase: React.FC<IShowCase> = () => {
+const ShowCase: React.FC<any> = () => {
     const books = useSelector((state: any) => state.books.books);
 
     return (
-        <Field className='main' direction={DirectionTypes.column}>
-            <SortAndFiltersPanel></SortAndFiltersPanel>
-            <ShowCasePanel books={books}></ShowCasePanel>
+        <Field className='showcase' direction={DirectionTypes.column}>
+            <SortAndFiltersPanel />
+            <ShowCasePanel books={books} />
         </Field>
     );
 }

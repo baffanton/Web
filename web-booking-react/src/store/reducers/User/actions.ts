@@ -220,7 +220,43 @@ export const fetchCities = () => (dispatch: (arg0: IFetchCities) => void) => {
         {
           "value": "Истра",
           "label": "Истра"
-        }
+        },
+        {
+            "value": 'perm',
+            "label": 'Пермь'
+        },
+        {
+            "value": 'kazan',
+            "label": 'Казань'
+        },
+        {
+            "value": 'krasnodar',
+            "label": 'Краснодар'
+        },
+        {
+            "value": 'saint-petersburg',
+            "label": 'Санкт-Петербург'
+        },
+        {
+            "value": 'novosibirsk',
+            "label": 'Новосибирск'
+        },
+        {
+            "value": 'nizhniynovgorod',
+            "label": 'Нижний Новгород'
+        },
+        {
+            "value": 'samara',
+            "label": 'Самара'
+        },
+        {
+            "value": 'omsk',
+            "label": 'Омск'
+        },
+        {
+            "value": 'ufa',
+            "label": 'Уфа'
+        },
     ]
 
     return dispatch({

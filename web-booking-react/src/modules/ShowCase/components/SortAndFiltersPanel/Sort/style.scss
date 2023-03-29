@@ -1,0 +1,27 @@
+.sort {
+    min-width: 325px;
+    width: 325px;
+    padding: 0 40px;
+    height: 100%;
+    background-color: #26a9e0;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    cursor: pointer;
+
+    &:hover {
+        background-color: #2660ab;
+    }
+
+    &_isActive {
+        background-color: #2660ab;
+    }
+
+    &__icon {
+        color: white;
+        margin-right: 10px;
+    }
+
+    &__title {
+        color: white;
+    }
+}

@@ -10,7 +10,7 @@ import { Filter } from './components/Filter';
 import { filtersConfig } from './config';
 import './style.scss';
 
-const FilterPanel: React.FC<any> = () => {
+const Filters: React.FC<any> = () => {
     const dispatch = useDispatch();
     const [currentPanel, setCurrentPanel] = useState<any>(null);
     const [currentFilters, setCurrentFilters] = useState<IFilters | null>(null);
@@ -39,7 +39,7 @@ const FilterPanel: React.FC<any> = () => {
 
     return (
         <>
-            <Field className='filter-container' ai={AlignItemsTypes.center}>
+            <Field className='filters' ai={AlignItemsTypes.center}>
                 {filtersConfig.map((item) => {
                     return (
                         <Filter 
@@ -53,12 +53,12 @@ const FilterPanel: React.FC<any> = () => {
                     )
                 })}
             </Field>
-            <Field className='filter-button' ai={AlignItemsTypes.center}>
-                <button className="filter-button__apply" onClick={handlerClick}>Применить</button>
-                <FontAwesomeIcon onClick={handlerClear} className='filter-button__clear' icon={faArrowRotateLeft} />
+            <Field className='filters__button' ai={AlignItemsTypes.center}>
+                <button className="filters__apply" onClick={handlerClick}>Применить</button>
+                <FontAwesomeIcon onClick={handlerClear} className='filters__clear' icon={faArrowRotateLeft} />
             </Field>
         </>
     )
 }
 
-export { FilterPanel };
+export { Filters };

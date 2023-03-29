@@ -1,19 +1,17 @@
-.location {
-    &__body {
-        padding-top: 15px;
-    }
+.choose-city {
+    padding-top: 15px;
 
-    &__million {
+    &__big-cities {
         padding: 15px 0px;
     }
 
-    &__city {
+    &__name {
         padding: 10px 20px;
         width: inherit;
         cursor: pointer;
     }
 
-    &__city:hover {
+    &__name:hover {
         background-color: #2660ab;
         color: white;
     }
@@ -33,15 +31,17 @@
         background-color: darkgrey;
         cursor: default;
     }
-    
-}
 
-.location-select {
-    &__container {
+    &__select-container {
         width: 100%;
         padding: 0 20px;
     }
+
     &__control {
         height: 50px;
+    }
+
+    &__menu {
+        max-width: 410px;
     }
 }
